@@ -13,7 +13,7 @@ const AddItemScreen = () => {
     console.log(item);
   }
   return (
-    <FormView submitCallback={submitCallback}/>
+    <FormView submitTitle='Add' submitCallback={submitCallback}/>
   );
 };
 

@@ -12,7 +12,7 @@ const EditItemScreen = ({ route }) => {
     console.log(item);
   }
   return (
-    <FormView item={{ title: 'Item One', subTitle: 'Item one description' }} submitCallback={submitCallback}/>
+    <FormView item={{ title: 'Item One', subTitle: 'Item one description' }} submitTitle='Save' submitCallback={submitCallback}/>
   );
 };
 
