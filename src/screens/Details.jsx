@@ -3,13 +3,16 @@ import {
   Text,
   View,
 } from 'react-native';
+import { useItemsContext } from '../store/context';
 
 const DetailsScreen = ({ route }) => {
+  const { getItemById } = useItemsContext();
   const itemId = route?.params?.params?.itemId;
+  const item = getItemById(itemId);
   return (
     <View style={styles.container}>
-      <Text>Item One {itemId}</Text>
-      <Text style={{ marginTop: 20 }}>Item one description</Text>
+      <Text>{item.title}</Text>
+      <Text style={{ marginTop: 20 }}>{item.subTitle}</Text>
     </View>
   );
 };

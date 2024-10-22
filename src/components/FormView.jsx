@@ -13,8 +13,11 @@ const FormView = ({ item, submitTitle, submitCallback }) => {
       title: item?.title ?? '',
       subTitle: item?.subTitle ?? '',
     },
-    onSubmit: values => {
-      submitCallback();
+    onSubmit: (values) => {
+      submitCallback({
+        id: item?.id,
+        ...values,
+      });
       console.log(values);
     },
   });

@@ -1,12 +1,14 @@
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 
+import {ItemsContextProvider} from './src/store/context';
 import MainStack from './src/routes/MainStack';
 
 function App() {
-
   return (
     <NavigationContainer>
-      <MainStack />
+      <ItemsContextProvider>
+        <MainStack />
+      </ItemsContextProvider>
     </NavigationContainer>
   );
 }

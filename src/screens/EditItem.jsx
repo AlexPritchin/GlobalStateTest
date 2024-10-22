@@ -5,14 +5,23 @@ import {
 } from 'react-native';
 
 import FormView from '../components/FormView';
+import { useItemsContext } from '../store/context';
 
-const EditItemScreen = ({ route }) => {
+const EditItemScreen = ({ navigation, route }) => {
+  const { getItemById, dispatch } = useItemsContext();
   const itemId = route?.params?.params?.itemId;
+  const item = getItemById(itemId);
+
   const submitCallback = (item) => {
     console.log(item);
+    dispatch({
+      type: 'edit',
+      item: item,
+    });
+    navigation.goBack();
   }
   return (
-    <FormView item={{ title: 'Item One', subTitle: 'Item one description' }} submitTitle='Save' submitCallback={submitCallback}/>
+    <FormView item={item} submitTitle='Save' submitCallback={submitCallback}/>
   );
 };
 
@@ -20,7 +29,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 25,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
 });
 
