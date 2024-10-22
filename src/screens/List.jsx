@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 
 import ListItem from '../components/ListItem';
 import {useItemsContext} from '../store/context';
@@ -7,7 +7,7 @@ const ListScreen = ({navigation}) => {
   const {items} = useItemsContext();
 
   const goToDetails = itemId =>
-    navigation.navigate('Details', {params: {itemId: itemId}});
+    navigation.navigate('Details', {itemId: itemId});
 
   return (
     <View style={styles.container}>
@@ -16,16 +16,7 @@ const ListScreen = ({navigation}) => {
         renderItem={({item}) => (
           <ListItem item={item} goToDetailsCallback={goToDetails} />
         )}
-        ItemSeparatorComponent={() => (
-          <View
-            style={{
-              height: 1,
-              marginLeft: 10,
-              marginVertical: 10,
-              backgroundColor: 'black',
-            }}
-          />
-        )}
+        ItemSeparatorComponent={() => <View style={styles.listItemSeparator} />}
       />
     </View>
   );
@@ -37,6 +28,12 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingHorizontal: 25,
     backgroundColor: 'white',
+  },
+  listItemSeparator: {
+    height: 1,
+    marginLeft: 10,
+    marginVertical: 10,
+    backgroundColor: 'black',
   },
 });
 
