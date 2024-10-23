@@ -1,10 +1,11 @@
 import {FlatList, StyleSheet, View} from 'react-native';
-
 import ListItem from '../components/ListItem';
-import {useItemsContext} from '../store/contextAPI/context';
+
+import {useSelector} from 'react-redux';
+import {selectAllItems} from '../store/redux/itemsSlice';
 
 const ListScreen = ({navigation}) => {
-  const {items} = useItemsContext();
+  const items = useSelector(selectAllItems);
 
   const goToDetails = itemId =>
     navigation.navigate('Details', {itemId: itemId});

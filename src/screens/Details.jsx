@@ -1,10 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
-import {useItemsContext} from '../store/contextAPI/context';
+
+import {useSelector} from 'react-redux';
+import {selectItemById} from '../store/redux/itemsSlice';
 
 const DetailsScreen = ({route}) => {
-  const {getItemById} = useItemsContext();
   const itemId = route?.params?.itemId;
-  const item = getItemById(itemId);
+  const item = useSelector(state => selectItemById(state, itemId));
+
   return (
     <View style={styles.container}>
       <Text>{item.title}</Text>

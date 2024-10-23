@@ -1,18 +1,22 @@
 import FormView from '../components/FormView';
-import {useItemsContext} from '../store/contextAPI/context';
+
+import {useSelector, useDispatch} from 'react-redux';
+import {edit, selectItemById} from '../store/redux/itemsSlice';
 
 const EditItemScreen = ({navigation, route}) => {
-  const {getItemById, dispatch} = useItemsContext();
   const itemId = route?.params?.itemId;
-  const item = getItemById(itemId);
+  const item = useSelector(state => selectItemById(state, itemId));
+  const dispatch = useDispatch();
 
   const submitCallback = item => {
-    dispatch({
-      type: 'edit',
-      item: item,
-    });
+    dispatch(
+      edit({
+        item,
+      }),
+    );
     navigation.goBack();
   };
+
   return (
     <FormView item={item} submitTitle="Save" submitCallback={submitCallback} />
   );

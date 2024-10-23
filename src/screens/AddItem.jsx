@@ -1,15 +1,20 @@
 import FormView from '../components/FormView';
-import {useItemsContext} from '../store/contextAPI/context';
+
+import {useDispatch} from 'react-redux';
+import {add} from '../store/redux/itemsSlice';
 
 const AddItemScreen = ({navigation}) => {
-  const {dispatch} = useItemsContext();
+  const dispatch = useDispatch();
+
   const submitCallback = item => {
-    dispatch({
-      type: 'add',
-      item: item,
-    });
+    dispatch(
+      add({
+        item,
+      }),
+    );
     navigation.goBack();
   };
+
   return <FormView submitTitle="Add" submitCallback={submitCallback} />;
 };
 

@@ -1,9 +1,10 @@
 import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 
-import {useItemsContext} from '../store/contextAPI/context';
+import {useDispatch} from 'react-redux';
+import {remove} from '../store/redux/itemsSlice';
 
 const ListItem = ({item, goToDetailsCallback}) => {
-  const {dispatch} = useItemsContext();
+  const dispatch = useDispatch();
 
   return (
     <TouchableOpacity
@@ -16,10 +17,11 @@ const ListItem = ({item, goToDetailsCallback}) => {
       <TouchableOpacity
         style={{justifyContent: 'center'}}
         onPress={() =>
-          dispatch({
-            type: 'delete',
-            id: item.id,
-          })
+          dispatch(
+            remove({
+              id: item.id,
+            }),
+          )
         }>
         <Text style={{color: '#ff4040'}}>Delete</Text>
       </TouchableOpacity>

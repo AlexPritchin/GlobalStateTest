@@ -1,15 +1,16 @@
 import {NavigationContainer} from '@react-navigation/native';
-
-import {ItemsContextProvider} from './src/store/contextAPI/context';
 import MainStack from './src/routes/MainStack';
+
+import {Provider} from 'react-redux';
+import {store} from './src/store/redux/store';
 
 function App() {
   return (
-    <NavigationContainer>
-      <ItemsContextProvider>
+    <Provider store={store}>
+      <NavigationContainer>
         <MainStack />
-      </ItemsContextProvider>
-    </NavigationContainer>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
