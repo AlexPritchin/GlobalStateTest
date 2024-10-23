@@ -1,6 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 
-import {ItemsContextProvider} from './src/store/context';
+import {ItemsContextProvider} from './src/store/contextAPI/context';
 import MainStack from './src/routes/MainStack';
 
 function App() {

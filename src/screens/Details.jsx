@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import {useItemsContext} from '../store/context';
+import {useItemsContext} from '../store/contextAPI/context';
 
 const DetailsScreen = ({route}) => {
   const {getItemById} = useItemsContext();

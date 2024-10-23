@@ -1,5 +1,5 @@
 import FormView from '../components/FormView';
-import {useItemsContext} from '../store/context';
+import {useItemsContext} from '../store/contextAPI/context';
 
 const EditItemScreen = ({navigation, route}) => {
   const {getItemById, dispatch} = useItemsContext();

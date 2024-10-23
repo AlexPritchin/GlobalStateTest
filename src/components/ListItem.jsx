@@ -1,6 +1,6 @@
 import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 
-import {useItemsContext} from '../store/context';
+import {useItemsContext} from '../store/contextAPI/context';
 
 const ListItem = ({item, goToDetailsCallback}) => {
   const {dispatch} = useItemsContext();

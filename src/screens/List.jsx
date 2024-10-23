@@ -1,7 +1,7 @@
 import {FlatList, StyleSheet, View} from 'react-native';
 
 import ListItem from '../components/ListItem';
-import {useItemsContext} from '../store/context';
+import {useItemsContext} from '../store/contextAPI/context';
 
 const ListScreen = ({navigation}) => {
   const {items} = useItemsContext();
