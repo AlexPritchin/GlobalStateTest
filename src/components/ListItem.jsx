@@ -1,10 +1,10 @@
 import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 
-import {useDispatch} from 'react-redux';
-import {remove} from '../store/redux/itemsSlice';
+import {observer} from 'mobx-react-lite';
+import {useItemsMobXContext} from '../store/mobX/context';
 
-const ListItem = ({item, goToDetailsCallback}) => {
-  const dispatch = useDispatch();
+const ListItem = observer(({item, goToDetailsCallback}) => {
+  const store = useItemsMobXContext();
 
   return (
     <TouchableOpacity
@@ -16,18 +16,12 @@ const ListItem = ({item, goToDetailsCallback}) => {
       </View>
       <TouchableOpacity
         style={{justifyContent: 'center'}}
-        onPress={() =>
-          dispatch(
-            remove({
-              id: item.id,
-            }),
-          )
-        }>
+        onPress={() => store.removeItem(item.id)}>
         <Text style={{color: '#ff4040'}}>Delete</Text>
       </TouchableOpacity>
     </TouchableOpacity>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {

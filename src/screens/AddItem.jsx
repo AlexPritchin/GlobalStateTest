@@ -1,21 +1,17 @@
 import FormView from '../components/FormView';
 
-import {useDispatch} from 'react-redux';
-import {add} from '../store/redux/itemsSlice';
+import {observer} from 'mobx-react-lite';
+import {useItemsMobXContext} from '../store/mobX/context';
 
-const AddItemScreen = ({navigation}) => {
-  const dispatch = useDispatch();
+const AddItemScreen = observer(({navigation}) => {
+  const store = useItemsMobXContext();
 
   const submitCallback = item => {
-    dispatch(
-      add({
-        item,
-      }),
-    );
+    store.addItem(item);
     navigation.goBack();
   };
 
   return <FormView submitTitle="Add" submitCallback={submitCallback} />;
-};
+});
 
 export default AddItemScreen;

@@ -1,11 +1,11 @@
 import {FlatList, StyleSheet, View} from 'react-native';
 import ListItem from '../components/ListItem';
 
-import {useSelector} from 'react-redux';
-import {selectAllItems} from '../store/redux/itemsSlice';
+import {observer} from 'mobx-react-lite';
+import {useItemsMobXContext} from '../store/mobX/context';
 
-const ListScreen = ({navigation}) => {
-  const items = useSelector(selectAllItems);
+const ListScreen = observer(({navigation}) => {
+  const store = useItemsMobXContext();
 
   const goToDetails = itemId =>
     navigation.navigate('Details', {itemId: itemId});
@@ -13,7 +13,7 @@ const ListScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={items}
+        data={store.items.slice()}
         renderItem={({item}) => (
           <ListItem item={item} goToDetailsCallback={goToDetails} />
         )}
@@ -21,7 +21,7 @@ const ListScreen = ({navigation}) => {
       />
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {

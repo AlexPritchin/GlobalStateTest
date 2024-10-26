@@ -1,11 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 
-import {useSelector} from 'react-redux';
-import {selectItemById} from '../store/redux/itemsSlice';
+import {observer} from 'mobx-react-lite';
+import {useItemsMobXContext} from '../store/mobX/context';
 
-const DetailsScreen = ({route}) => {
+const DetailsScreen = observer(({route}) => {
   const itemId = route?.params?.itemId;
-  const item = useSelector(state => selectItemById(state, itemId));
+  const store = useItemsMobXContext();
+  const item = store.selectItemById(itemId);
 
   return (
     <View style={styles.container}>
@@ -13,7 +14,7 @@ const DetailsScreen = ({route}) => {
       <Text style={{marginTop: 20}}>{item.subTitle}</Text>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {

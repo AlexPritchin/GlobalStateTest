@@ -1,16 +1,16 @@
 import {NavigationContainer} from '@react-navigation/native';
 import MainStack from './src/routes/MainStack';
 
-import {Provider} from 'react-redux';
-import {store} from './src/store/redux/store';
+import {ItemsMobXContext} from './src/store/mobX/context';
+import {Store} from './src/store/mobX/store';
 
 function App() {
   return (
-    <Provider store={store}>
+    <ItemsMobXContext.Provider value={new Store()}>
       <NavigationContainer>
         <MainStack />
       </NavigationContainer>
-    </Provider>
+    </ItemsMobXContext.Provider>
   );
 }
 

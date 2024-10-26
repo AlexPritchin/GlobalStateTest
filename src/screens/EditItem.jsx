@@ -1,25 +1,21 @@
 import FormView from '../components/FormView';
 
-import {useSelector, useDispatch} from 'react-redux';
-import {edit, selectItemById} from '../store/redux/itemsSlice';
+import {observer} from 'mobx-react-lite';
+import {useItemsMobXContext} from '../store/mobX/context';
 
-const EditItemScreen = ({navigation, route}) => {
+const EditItemScreen = observer(({navigation, route}) => {
   const itemId = route?.params?.itemId;
-  const item = useSelector(state => selectItemById(state, itemId));
-  const dispatch = useDispatch();
+  const store = useItemsMobXContext();
+  const item = store.selectItemById(itemId);
 
   const submitCallback = item => {
-    dispatch(
-      edit({
-        item,
-      }),
-    );
+    store.editItem(item);
     navigation.goBack();
   };
 
   return (
     <FormView item={item} submitTitle="Save" submitCallback={submitCallback} />
   );
-};
+});
 
 export default EditItemScreen;
