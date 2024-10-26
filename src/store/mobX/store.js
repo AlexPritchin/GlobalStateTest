@@ -1,4 +1,6 @@
 import {makeAutoObservable} from 'mobx';
+import {makePersistable} from 'mobx-persist-store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const initialState = {
   items: [
@@ -20,11 +22,19 @@ const initialState = {
   ],
 };
 
+const persistOptions = {
+  name: 'ItemsStore',
+  properties: ['items'],
+  storage: AsyncStorage,
+};
+
 export class Store {
   items = initialState.items;
 
   constructor() {
     makeAutoObservable(this);
+
+    makePersistable(this, persistOptions);
   }
 
   selectItemById(itemId) {
